@@ -1,1 +1,124 @@
+name: Build geodata
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 21 * * *"
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - "**/README.md"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set variables
+        run: |
+          echo "update_version=$(date -d '+8 hours' '+%Y-%m-%d %H:00')" >> ${GITHUB_ENV}
+          echo "domains_download_url=https://raw.githubusercontent.com/rts600/domain-list/domains" >> ${GITHUB_ENV}
+        shell: bash
 
+      - name: Clone Repository
+        uses: actions/checkout@master
+
+      - name: Checkout rts600/domain-list
+        uses: actions/checkout@v4
+        with:
+          repository: rts600/domain-list
+          path: custom
+
+      - name: Checkout v2fly/domain-list-community
+        uses: actions/checkout@v4
+        with:
+          repository: v2fly/domain-list-community
+          path: community
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: ./custom/go.mod
+          cache-dependency-path: ./custom/go.sum
+
+      - name: Generate geodata
+        run: |
+          mkdir -p ./community/mydata/
+          archs1=(private ads microsoft-cn apple-cn google-cn games-cn media games ai networktest tld-proxy proxy gfwlist cn)
+          archs2=(proxy cn-lite)
+          archs3=(private ad ai google youtube netflix games games-cn github facebook twitter telegram onedrive gfwlist cn-lite)
+
+          # Generate geosite-all.dat
+          cd ./community/
+          for arch1 in "${archs1[@]}"; do
+            curl -sSL "${domains_download_url}/${arch1}.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' > "./mydata/${arch1}"
+          done
+          curl -sSL "${domains_download_url}/fakeip-filter.list" | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' -e 's/DOMAIN-REGEX,/regexp:/' > ./mydata/fakeip-filter
+          go run ./ --datapath=./mydata/ --outputname geosite-all.dat
+
+          # Generate geosite.dat
+          rm -f ./mydata/ads
+          go run ./ --datapath=./mydata/ --outputname geosite.dat
+
+          # Generate geosite-lite.dat
+          rm -f ./mydata/*
+          for arch2 in "${archs2[@]}"; do
+            curl -sSL "${domains_download_url}/${arch2}.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' > "./mydata/${arch2}"
+          done
+          mv -f ./mydata/cn-lite ./mydata/cn
+          curl -sSL "${domains_download_url}/fakeip-filter.list" | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' -e 's/DOMAIN-REGEX,/regexp:/' > ./mydata/fakeip-filter
+          go run ./ --datapath=./mydata/ --outputname geosite-lite.dat
+          
+          # Generate geosite-mini.dat
+          rm -f ./mydata/*
+          for arch3 in "${archs3[@]}"; do
+            curl -sSL "${domains_download_url}/${arch3}.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' > "./mydata/${arch3}"
+          done
+          mv -f ./mydata/cn-lite ./mydata/cn
+          curl -sSL "${domains_download_url}/fakeip-filter.list" | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' -e 's/DOMAIN-REGEX,/regexp:/' > ./mydata/fakeip-filter
+          go run ./ --datapath=./mydata/ --outputname geosite-mini.dat
+
+      - name: Move geodata files
+        run: |
+          mkdir -p ./mihomo/
+          cd ./community/ || exit 1
+          for file in $(ls *.dat); do
+            install -Dp "./${file}" ../mihomo/
+          done
+          rm -rf ../custom* ../community*
+
+      - name: Release and upload assets
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          release_name: geosite
+          tag: mihomo
+          overwrite: true
+          body: |
+            geosite文件更新于 ${{ env.update_version }}
+          file_glob: true
+          file: ./mihomo/*
+
+      - name: Commit and push branch
+        run: |
+          cd ./mihomo/ || exit 1
+          git init
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git checkout -b mihomo
+          git add . && git commit -m "geosite文件更新于 ${update_version}"
+          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f origin mihomo
+
+      - name: Purge jsDelivr CDN
+        run: |
+          cd ./mihomo/ || exit 1
+          for file in $(ls); do
+            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@mihomo/${file}"
+          done
+
+      - name: Delete old workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          retain_days: 3
+          keep_minimum_runs: 1
