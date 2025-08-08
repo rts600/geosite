@@ -42,7 +42,7 @@ jobs:
       - name: Generate geodata
         run: |
           mkdir -p ./community/mydata/
-          archs1=(private ads ai google youtube netflix games games-cn github facebook twitter telegram onedrive media microsoft-cn apple-cn google-cn networktest tld-proxy proxy gfwlist cn)
+          archs1=(private ads ai google youtube netflix games games-cn github facebook twitter telegram onedrive media microsoft-cn apple-cn google-cn networktest tld-proxy proxy cn)
           archs2=(private ad ai google youtube netflix games games-cn github facebook twitter telegram onedrive proxy gfwlist cn-lite)
           archs3=(private ad ai google youtube netflix games games-cn github facebook twitter telegram onedrive gfwlist cn-lite)
 
