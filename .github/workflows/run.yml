@@ -51,7 +51,7 @@ jobs:
           for arch1 in "${archs1[@]}"; do
             curl -sSL "${domains_download_url}/${arch1}.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' > "./mydata/${arch1}"
           done
-          mv -f ./mydata/apple-cn ./mydata/apple
+          
           curl -sSL "${domains_download_url}/fakeip-filter.list" | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' -e 's/DOMAIN-REGEX,/regexp:/' > ./mydata/fakeip-filter
           go run ./ --datapath=./mydata/ --outputname geosite-all.dat
 
@@ -65,7 +65,7 @@ jobs:
             curl -sSL "${domains_download_url}/${arch2}.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' > "./mydata/${arch2}"
           done
           mv -f ./mydata/cn-lite ./mydata/cn
-          mv -f ./mydata/apple-cn ./mydata/apple
+          
           curl -sSL "${domains_download_url}/fakeip-filter.list" | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' -e 's/DOMAIN-REGEX,/regexp:/' > ./mydata/fakeip-filter
           go run ./ --datapath=./mydata/ --outputname geosite.dat
           
@@ -75,7 +75,7 @@ jobs:
             curl -sSL "${domains_download_url}/${arch3}.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' > "./mydata/${arch3}"
           done
           mv -f ./mydata/cn-lite ./mydata/cn
-          mv -f ./mydata/apple-cn ./mydata/apple
+          
           curl -sSL "${domains_download_url}/fakeip-filter.list" | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' -e 's/DOMAIN-REGEX,/regexp:/' > ./mydata/fakeip-filter
           go run ./ --datapath=./mydata/ --outputname geosite-lite.dat
 
