@@ -44,7 +44,7 @@ jobs:
           mkdir -p ./community/mydata/
           archs1=(private ads ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive media networktest tld-proxy proxy cn)
           archs2=(private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive proxy gfwlist cn-lite)
-          archs3=(private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive gfwlist cn-lite)
+          archs3=(private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive proxy cn-lite)
 
           # Generate geosite-all.dat
           cd ./community/
