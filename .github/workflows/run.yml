@@ -22,13 +22,13 @@ jobs:
         uses: actions/checkout@master
 
       - name: Checkout rts600/domain-list
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: rts600/domain-list
           path: custom
 
       - name: Checkout v2fly/domain-list-community
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: v2fly/domain-list-community
           path: community
