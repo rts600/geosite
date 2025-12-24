@@ -42,9 +42,9 @@ jobs:
       - name: Generate geodata
         run: |
           mkdir -p ./community/mydata/
-          archs1=(private ads ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive proxy media cn)
-          archs2=(private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive proxy gfwlist cn-lite)
-          archs3=(private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive proxy cn-lite)
+          archs1=(private ads ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix bilibili max tiktok spotify github facebook twitter telegram onedrive proxy media cn)
+          archs2=(private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix bilibili max tiktok spotify github facebook twitter telegram onedrive proxy media gfwlist cn-lite)
+          archs3=(private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix bilibili max tiktok spotify github facebook twitter telegram onedrive proxy media cn-lite)
 
           # Generate geosite-all.dat
           cd ./community/
