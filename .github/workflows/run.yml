@@ -42,9 +42,9 @@ jobs:
       - name: Generate geodata
         run: |
           mkdir -p ./community/mydata/
-          archs1=(private ads ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix bilibili max tiktok spotify github facebook twitter telegram onedrive proxy media cn)
-          archs2=(private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive proxy media gfwlist cn-lite)
-          archs3=(private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive proxy media cn-lite)
+          archs1=(fakeip-filter private ads ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix bilibili max tiktok spotify github facebook twitter telegram onedrive proxy media cn)
+          archs2=(fakeip-filter private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive proxy media gfwlist cn-lite)
+          archs3=(fakeip-filter private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive proxy media cn-lite)
 
           # Generate geosite-all.dat
           cd ./community/
@@ -52,7 +52,6 @@ jobs:
             curl -sSL "${domains_download_url}/${arch1}.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|DOMAIN-REGEX' | sed -e 's/DOMAIN-REGEX,/regexp:/; s/DOMAIN,/full:/; s/DOMAIN-SUFFIX,//; s/DOMAIN-KEYWORD,/keyword:/' > "./mydata/${arch1}"
           done
           
-          curl -sSL "${domains_download_url}/fakeip-filter.list" | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' -e 's/DOMAIN-REGEX,/regexp:/' > ./mydata/fakeip-filter
           go run ./ --datapath=./mydata/ --outputname geosite-all.dat
 
           # Generate geosite-full.dat
@@ -66,7 +65,6 @@ jobs:
           done
           mv -f ./mydata/cn-lite ./mydata/cn
           
-          curl -sSL "${domains_download_url}/fakeip-filter.list" | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' -e 's/DOMAIN-REGEX,/regexp:/' > ./mydata/fakeip-filter
           go run ./ --datapath=./mydata/ --outputname geosite.dat
           
           # Generate geosite-lite.dat
@@ -76,7 +74,6 @@ jobs:
           done
           mv -f ./mydata/cn-lite ./mydata/cn
           
-          curl -sSL "${domains_download_url}/fakeip-filter.list" | sed -e 's/DOMAIN,/full:/' -e 's/DOMAIN-SUFFIX,//' -e 's/DOMAIN-KEYWORD,/keyword:/' -e 's/DOMAIN-REGEX,/regexp:/' > ./mydata/fakeip-filter
           go run ./ --datapath=./mydata/ --outputname geosite-lite.dat
 
       - name: Move geodata files
