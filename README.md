@@ -25,28 +25,28 @@
   </tr>
   <tr>
     <td>geosite-all.dat<br> - 4.84 MB</td>
-    <td><code>fakeip-filter</code>、<code>private</code>、<code>ads</code>、<code>ai</code>、<code>apple</code>、<code>apple-cn</code>、<code>microsoft</code>、<code>microsoft-cn</code>、<code>google</code>、<code>youtube</code>、<code>netflix</code>、<code>bilibili</code>、<code>max</code>、<code>tiktok</code>、<code>spotify</code>、<code>github</code>、<code>facebook</code>、<code>twitter</code>、<code>telegram</code>、<code>onedrive</code>、<code>microsoft-cn</code>、<code>apple-cn</code>、<code>google-cn</code>、<code>games-cn</code>、<code>games</code>、<code>proxy</code>、<code>media</code>、<code>gfwlist</code>、<code>cn</code></td>
+    <td><code>private</code>、<code>ads</code>、<code>ai</code>、<code>apple</code>、<code>apple-cn</code>、<code>microsoft</code>、<code>microsoft-cn</code>、<code>google</code>、<code>youtube</code>、<code>netflix</code>、<code>bilibili</code>、<code>max</code>、<code>tiktok</code>、<code>spotify</code>、<code>github</code>、<code>facebook</code>、<code>twitter</code>、<code>telegram</code>、<code>onedrive</code>、<code>microsoft-cn</code>、<code>apple-cn</code>、<code>google-cn</code>、<code>games-cn</code>、<code>games</code>、<code>proxy</code>、<code>media</code>、<code>gfwlist</code>、<code>cn</code></td>
     <td align="center"><a href="https://github.com/rts600/geosite/releases/download/mihomo/geosite-all.dat">下载</a></td>
     <td align="center"><a href="https://cdn.jsdelivr.net/gh/rts600/geosite@mihomo/geosite-all.dat">下载</a></td>
     <td align="center"><a href="https://ghfast.top/https://github.com/rts600/geosite/releases/download/mihomo/geosite-all.dat">下载</a></td>
   </tr>
   <tr>
     <td>geosite-full.dat<br> - 2.55 MB</td>
-    <td><code>fakeip-filter</code>、<code>private</code>、<del><code>ads</code></del>、<code>ai</code>、<code>apple</code>、<code>apple-cn</code>、<code>microsoft</code>、<code>microsoft-cn</code>、<code>google</code>、<code>youtube</code>、<code>netflix</code>、<code>bilibili</code>、<code>max</code>、<code>tiktok</code>、<code>spotify</code>、<code>github</code>、<code>facebook</code>、<code>twitter</code>、<code>telegram</code>、<code>onedrive</code>、<code>microsoft-cn</code>、<code>apple-cn</code>、<code>google-cn</code>、<code>games-cn</code>、<code>games</code>、<code>proxy</code>、<code>media</code>、<code>gfwlist</code>、<code>cn</code></td>
+    <td><code>private</code>、<del><code>ads</code></del>、<code>ai</code>、<code>apple</code>、<code>apple-cn</code>、<code>microsoft</code>、<code>microsoft-cn</code>、<code>google</code>、<code>youtube</code>、<code>netflix</code>、<code>bilibili</code>、<code>max</code>、<code>tiktok</code>、<code>spotify</code>、<code>github</code>、<code>facebook</code>、<code>twitter</code>、<code>telegram</code>、<code>onedrive</code>、<code>microsoft-cn</code>、<code>apple-cn</code>、<code>google-cn</code>、<code>games-cn</code>、<code>games</code>、<code>proxy</code>、<code>media</code>、<code>gfwlist</code>、<code>cn</code></td>
     <td align="center"><a href="https://github.com/rts600/geosite/releases/download/mihomo/geosite-full.dat">下载</a></td>
     <td align="center"><a href="https://cdn.jsdelivr.net/gh/rts600/geosite@mihomo/geosite-full.dat">下载</a></td>
     <td align="center"><a href="https://ghfast.top/https://github.com/rts600/geosite/releases/download/mihomo/geosite-full.dat">下载</a></td>
   </tr>
   <tr>
     <td>geosite.dat<br> - 892 KB</td>
-    <td><code>fakeip-filter</code>、<code>private</code>、<code>ad精简版</code>、<code>ai</code>、<code>apple</code>、<code>apple-cn</code>、<code>microsoft</code>、<code>microsoft-cn</code>、<code>google</code>、<code>youtube</code>、<code>netflix</code>、<code>games</code>、<code>games-cn</code>、<code>github</code>、<code>facebook</code>、<code>twitter</code>、<code>telegram</code>、<code>onedrive</code>、<code>proxy</code>、<code>media</code>、<code>gfwlist</code>、<code>cn精简版</code></td>
+    <td><code>private</code>、<code>ad精简版</code>、<code>ai</code>、<code>apple</code>、<code>apple-cn</code>、<code>microsoft</code>、<code>microsoft-cn</code>、<code>google</code>、<code>youtube</code>、<code>netflix</code>、<code>games</code>、<code>games-cn</code>、<code>github</code>、<code>facebook</code>、<code>twitter</code>、<code>telegram</code>、<code>onedrive</code>、<code>proxy</code>、<code>media</code>、<code>gfwlist</code>、<code>cn精简版</code></td>
     <td align="center"><a href="https://github.com/rts600/geosite/releases/download/mihomo/geosite.dat">下载</a></td>
     <td align="center"><a href="https://cdn.jsdelivr.net/gh/rts600/geosite@mihomo/geosite.dat">下载</a></td>
     <td align="center"><a href="https://ghfast.top/https://github.com/rts600/geosite/releases/download/mihomo/geosite.dat">下载</a></td>
   </tr>
   <tr>
     <td>geosite-lite.dat<br> - 760 KB</td>
-    <td><code>fakeip-filter</code>、<code>private</code>、<code>ad精简版</code>、<code>ai</code>、<code>apple</code>、<code>apple-cn</code>、<code>microsoft</code>、<code>microsoft-cn</code>、<code>google</code>、<code>youtube</code>、<code>netflix</code>、<code>games</code>、<code>games-cn</code>、<code>github</code>、<code>facebook</code>、<code>twitter</code>、<code>telegram</code>、<code>onedrive</code>、<code>proxy</code>、<code>media</code>、<del><code>gfwlist</code></del>、<code>cn精简版</code></td>
+    <td><code>private</code>、<code>ad精简版</code>、<code>ai</code>、<code>apple</code>、<code>apple-cn</code>、<code>microsoft</code>、<code>microsoft-cn</code>、<code>google</code>、<code>youtube</code>、<code>netflix</code>、<code>games</code>、<code>games-cn</code>、<code>github</code>、<code>facebook</code>、<code>twitter</code>、<code>telegram</code>、<code>onedrive</code>、<code>proxy</code>、<code>media</code>、<del><code>gfwlist</code></del>、<code>cn精简版</code></td>
     <td align="center"><a href="https://github.com/rts600/geosite/releases/download/mihomo/geosite-lite.dat">下载</a></td>
     <td align="center"><a href="https://cdn.jsdelivr.net/gh/rts600/geosite@mihomo/geosite-lite.dat">下载</a></td>
     <td align="center"><a href="https://ghfast.top/https://github.com/rts600/geosite/releases/download/mihomo/geosite-lite.dat">下载</a></td>
