@@ -42,14 +42,14 @@ jobs:
       - name: Generate geodata
         run: |
           mkdir -p ./community/mydata/
-          archs1=(fakeip-filter private ads ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix bilibili max tiktok spotify github facebook twitter telegram onedrive proxy media cn)
-          archs2=(fakeip-filter private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive proxy media gfwlist cn-lite)
-          archs3=(fakeip-filter private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive proxy media cn-lite)
+          archs1=(private ads ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix bilibili max tiktok spotify github facebook twitter telegram onedrive proxy media cn)
+          archs2=(private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive proxy media gfwlist cn-lite)
+          archs3=(private ad ai apple apple-cn microsoft microsoft-cn games games-cn google youtube netflix github facebook twitter telegram onedrive proxy media cn-lite)
 
           # Generate geosite-all.dat
           cd ./community/
           for arch1 in "${archs1[@]}"; do
-            curl -sSL "${domains_download_url}/${arch1}.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|DOMAIN-REGEX' | sed -e 's/DOMAIN-REGEX,/regexp:/; s/DOMAIN,/full:/; s/DOMAIN-SUFFIX,//; s/DOMAIN-KEYWORD,/keyword:/' > "./mydata/${arch1}"
+            curl -sSL "${domains_download_url}/${arch1}.list" | grep -E '^DOMAIN,|^DOMAIN-SUFFIX,|^DOMAIN-KEYWORD,' | sed -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-KEYWORD,/keyword:/' > "./mydata/${arch1}"
           done
           
           go run ./ --datapath=./mydata/ --outputname geosite-all.dat
@@ -61,7 +61,7 @@ jobs:
           # Generate geosite.dat
           rm -f ./mydata/*
           for arch2 in "${archs2[@]}"; do
-            curl -sSL "${domains_download_url}/${arch2}.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|DOMAIN-REGEX' | sed -e 's/DOMAIN-REGEX,/regexp:/; s/DOMAIN,/full:/; s/DOMAIN-SUFFIX,//; s/DOMAIN-KEYWORD,/keyword:/' > "./mydata/${arch2}"
+            curl -sSL "${domains_download_url}/${arch2}.list" | grep -E '^DOMAIN,|^DOMAIN-SUFFIX,|^DOMAIN-KEYWORD,' | sed -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-KEYWORD,/keyword:/' > "./mydata/${arch2}"
           done
           mv -f ./mydata/cn-lite ./mydata/cn
           
@@ -70,7 +70,7 @@ jobs:
           # Generate geosite-lite.dat
           rm -f ./mydata/*
           for arch3 in "${archs3[@]}"; do
-            curl -sSL "${domains_download_url}/${arch3}.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|DOMAIN-REGEX' | sed -e 's/DOMAIN-REGEX,/regexp:/; s/DOMAIN,/full:/; s/DOMAIN-SUFFIX,//; s/DOMAIN-KEYWORD,/keyword:/' > "./mydata/${arch3}"
+            curl -sSL "${domains_download_url}/${arch3}.list" | grep -E '^DOMAIN,|^DOMAIN-SUFFIX,|^DOMAIN-KEYWORD,' | sed -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-KEYWORD,/keyword:/' > "./mydata/${arch3}"
           done
           mv -f ./mydata/cn-lite ./mydata/cn
           
