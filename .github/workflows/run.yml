@@ -21,22 +21,22 @@ jobs:
         shell: bash
 
       - name: Clone Repository
-        uses: actions/checkout@master
+        uses: actions/checkout@v6
 
       - name: Checkout rts600/domain-list
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: rts600/domain-list
           path: custom
 
       - name: Checkout v2fly/domain-list-community
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: v2fly/domain-list-community
           path: community
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version-file: ./custom/go.mod
           cache-dependency-path: ./custom/go.sum
