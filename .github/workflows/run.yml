@@ -21,16 +21,16 @@ jobs:
         shell: bash
 
       - name: Clone Repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Checkout rts600/domain-list
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: rts600/domain-list
           path: custom
 
       - name: Checkout v2fly/domain-list-community
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: v2fly/domain-list-community
           path: community
